@@ -24,10 +24,10 @@ namespace scrubcardshopAPI
 
         }
 
-        [HttpGet("{name:length(24)}", Name="GetCard")]
-        public ActionResult <Card> Get(string name)
+        [HttpGet("{name:length(50)}", Name="GetCards")]
+        public ActionResult <Card> Get(int name)
         {
-            var card = _cardservice.Get(name);
+            Card card = _cardservice.Get(name);
             if(card == null)
             {
                 return NotFound();

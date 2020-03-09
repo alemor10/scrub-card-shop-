@@ -36,14 +36,17 @@ namespace scrubcardshopAPI
 
         }
         public List<Card> Get()
-        {
+        {            
+            //System.Diagnostics.Debug.WriteLine(_cardlist2);
             return _cardlist2;
+
             //return _users.Find(todo => true).ToList();
         }
 
-        public Card Get(string name)
+        public Card Get(int name)
         {
-            return _cardlist2.Find(card => card.name == name);
+            Card card = _cardlist2.FirstOrDefault(card => card.id ==name);
+            return card;
         }
 
     }
