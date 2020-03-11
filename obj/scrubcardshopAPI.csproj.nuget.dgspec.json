@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexx\\Documents\\GitHub\\scrub-card-shop-\\scrubcardshopAPI.csproj": {}
+    "/Users/ale/Documents/new Github/scrub-card-shop-/scrubcardshopAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexx\\Documents\\GitHub\\scrub-card-shop-\\scrubcardshopAPI.csproj": {
+    "/Users/ale/Documents/new Github/scrub-card-shop-/scrubcardshopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexx\\Documents\\GitHub\\scrub-card-shop-\\scrubcardshopAPI.csproj",
+        "projectUniqueName": "/Users/ale/Documents/new Github/scrub-card-shop-/scrubcardshopAPI.csproj",
         "projectName": "scrubcardshopAPI",
-        "projectPath": "C:\\Users\\alexx\\Documents\\GitHub\\scrub-card-shop-\\scrubcardshopAPI.csproj",
-        "packagesPath": "C:\\Users\\alexx\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexx\\Documents\\GitHub\\scrub-card-shop-\\obj\\",
+        "projectPath": "/Users/ale/Documents/new Github/scrub-card-shop-/scrubcardshopAPI.csproj",
+        "packagesPath": "/Users/ale/.nuget/packages/",
+        "outputPath": "/Users/ale/Documents/new Github/scrub-card-shop-/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\alexx\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/ale/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.102/RuntimeIdentifierGraph.json"
         }
       }
     }

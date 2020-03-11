@@ -4,7 +4,7 @@ using scrubcardshopAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace scrubcardshopAPI
+namespace scrubcardshopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,23 +16,29 @@ namespace scrubcardshopAPI
             _cardservice = cardService;
         }
 
+        //returns entire list of cards
         [HttpGet]
-        public ActionResult<List<User>> Get()
+        public ActionResult <List<Card>> Get()
         {
             var cardlist = _cardservice.Get();
             return Ok(cardlist);
 
         }
 
-        [HttpGet("{name:length(50)}", Name="GetCards")]
-        public ActionResult <Card> Get(int name)
+        //returns Card by card title 
+        [HttpGet("{cardname:length(24)}")]
+        [Route("category/{cardname}")]
+        public ActionResult <List<Card>> Get(string cardname)
         {
-            Card card = _cardservice.Get(name);
-            if(card == null)
-            {
-                return NotFound();
-            }
-            return card;
+          
+           
+           var card = _cardservice.Get(cardname);
+           if (cardname == null)
+           {
+               return NotFound();
+           }
+           return card;
+
         }
     }
 }

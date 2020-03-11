@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
 
 
 using scrubcardshopAPI.Models;
@@ -13,7 +11,7 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace scrubcardshopAPI
+namespace scrubcardshopAPI.Services
 {
     public class CardService 
     {
@@ -43,9 +41,9 @@ namespace scrubcardshopAPI
             //return _users.Find(todo => true).ToList();
         }
 
-        public Card Get(int name)
-        {
-            Card card = _cardlist2.FirstOrDefault(card => card.id ==name);
+        public List<Card> Get(string cardname)
+        { 
+            var card = _cardlist2.Where(x => x.name == cardname).ToList();
             return card;
         }
 
