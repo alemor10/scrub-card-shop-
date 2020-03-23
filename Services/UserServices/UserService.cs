@@ -1,52 +1,53 @@
 using System.Collections.Generic;
 using System.Linq;
-using scrubcardshopAPI.Models;
-using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using System.Threading.Tasks;
+
+
+using scrubcardshopAPI.Models;
+using scrubcardshopAPI.DataAccess.UserData;
+using scrubcardshopAPI.Services.UserRepository;
+using scrubcardshopAPI.Services.UserServices;
 
 namespace scrubcardshopAPI.Services
 {
-    public class UserService 
+    public class UserService : IUserService
     {
-        private readonly IMongoCollection<User> _users;
+        private readonly IUserRepository _repository;
 
-        public UserService(IConfiguration config)
+        public UserService (IUserRepository repository)
         {
-            var client = new MongoClient(config.GetConnectionString("scrubshopDB"));
-            var database = client.GetDatabase("scrubshopDB");
-            _users = database.GetCollection<User>("Users");
-            System.Diagnostics.Debug.WriteLine(_users);
+            _repository = repository;
         }
 
-        public List<User> Get()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return _users.Find(todo => true).ToList();
+            return await _repository.GetUsers();
         }
 
-        public User Get(string id)
+
+        public async Task<User> GetUser(string id)
         {
-            return _users.Find(user => user.Id == id).FirstOrDefault();
+            return await _repository.GetUser(id);
         }
 
-        public User Create(User user)
+        public async Task<User> CreateUser(CreateUserRequest createRequest)
         {
-            _users.InsertOne(user);
-            return user;
+            return await _repository.CreateUser(createRequest);
         }
 
-        public void Update(string id, User newUser)
+        public async Task<User> UpdateUser(string id, CreateUserRequest updateRequest)
         {
-            _users.ReplaceOne(user => user.Id == id,newUser);
+            return await _repository.UpdateUser(id, updateRequest);
         }
-        
-        public void Delete(string id)
+
+        public async Task RemoveUser(string id)
         {
-            _users.DeleteOne(user => user.Id ==id);
+            await _repository.RemoveUser(id);
         }
-        public void Delete(User user)
-        {
-            _users.DeleteOne(user => user.Id ==user.Id);
-        }
+
+
+
 
     }
 }

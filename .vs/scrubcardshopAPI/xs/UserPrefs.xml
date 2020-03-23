@@ -1,31 +1,21 @@
 ﻿<Properties StartupConfiguration="{B76E9C04-2F33-4331-8672-5F57A070A46F}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/CardService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
     <Files>
-      <File FileName="Services/UserService.cs" Line="18" Column="54" />
-      <File FileName="Startup.cs" />
-      <File FileName="Services/CardService.cs" Line="51" Column="2" />
+      <File FileName="Startup.cs" Line="1" Column="1" />
       <File FileName="Program.cs" />
       <File FileName="appsettings.json" />
       <File FileName="Controllers/CommandsController.cs" />
       <File FileName="Controllers/UserController.cs" />
       <File FileName="Properties/launchSettings.json" />
-      <File FileName="Controllers/CardController.cs" Line="38" Column="2" />
+      <File FileName="Controllers/CardController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="scrubcardshopAPI" expanded="True">
-            <Node name="scrubcardshopAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="CardService.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="scrubcardshopAPI" expanded="True" />
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

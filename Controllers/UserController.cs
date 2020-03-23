@@ -9,17 +9,17 @@ namespace scrubcardshopAPI.Controllers
     [ApiController]
     public class UserController: ControllerBase
     {
-        private readonly UserService _userservice;
+        private readonly IUserService _service;
 
         public UserController (UserService userService)
         {
-            _userservice = userService;
+            _service = userService;
         }
 
         [HttpGet]
         public ActionResult<List<User>> Get()
         {
-            var userlist = _userservice.Get();
+            var userlist = await _service.Get();
             return Ok(userlist);
 
         }

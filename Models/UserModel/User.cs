@@ -1,22 +1,16 @@
 using System;
 using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-
 
 namespace scrubcardshopAPI.Models
 {
-    public class User :BaseUser
+    public class User 
     {
-
-        [BsonElement]
-        public string Name {get; set;}
-
-        [BsonElement]
+        public string Id {get; set;}
+        public string Username {get; set;}
+        public string Email {get; set;}
+        public string Password {get;set;}
         public ICollection<Card> Deck {get; set;}
-
-
+        public ICollection<Card> CardsForSale {get; set;}
         
-    }
+    }    
 }
