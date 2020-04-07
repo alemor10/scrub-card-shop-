@@ -1,51 +1,76 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Reflection;
-
+using System.Threading.Tasks;
+using AutoMapper;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 
 using scrubcardshopAPI.Models;
-using MongoDB.Driver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using scrubcardshopAPI.Models.CardModel;
+using scrubcardshopAPI.DataAccess;
+using scrubcardshopAPI.DataAccess.UserData;
+using scrubcardshopAPI.DataAccess.CardsData;
 
-namespace scrubcardshopAPI.Services
+
+namespace scrubcardshopAPI.Services.CardServices
 {
-    public class CardService 
+    public class CardService : ICardService
     {
+        private readonly ICardContext _context;
+        private readonly IUserContext _usercontext;
+        private readonly IMapper _mapper;
 
-        private readonly string _cardlist;
-        private readonly List<Card> _cardlist2;
-        public CardService(IConfiguration config)
+
+        public CardService(ICardContext context, IUserContext userContext,IMapper mapper)
         {
-
-           var assembly = Assembly.GetEntryAssembly();
-           var resourceStream = assembly.GetManifestResourceStream("scrubcardshopAPI.Data.yugioh.json");
-           using (var reader = new StreamReader(resourceStream))
+            _mapper = mapper;
+            _context = context;
+            _usercontext = userContext;
+        }
+       
+       public async Task<List<Card>> GetCards ()
+       {
+           var Jsoncards =  _context.CardList;
+           var cards = new List<Card>();
+           await Task.Run (() => 
            {
-                _cardlist = reader.ReadToEnd();  
-                
-                _cardlist2 = JsonConvert.DeserializeObject<List<Card>>(_cardlist);
-           }
+               foreach(var card in cards)
+                {
+                 cards.Add(_mapper.Map<Card>(card));
+                }
+           });
+           return cards;
+       }
+       
+       public async Task<Card> GetCard(string name)
+       {
+           var Jsoncard = new CardDTO();
+           await Task.Run (() => 
+           {
+                Jsoncard = _context.CardList.Find(_ => _.name == name);
+           });
+           return _mapper.Map<CardDTO,Card>(Jsoncard);
+       }
 
-            //_cardlist = _cardlist2.ToObject<List<Card>>();
-
-        }
-        public List<Card> Get()
-        {            
-            //System.Diagnostics.Debug.WriteLine(_cardlist2);
-            return _cardlist2;
-
-            //return _users.Find(todo => true).ToList();
-        }
-
-        public List<Card> Get(string cardname)
-        { 
-            var card = _cardlist2.Where(x => x.name == cardname).ToList();
-            return card;
-        }
+       public async Task CreateDeckList(createCardListRequest userrequest)
+       {
+            if (userrequest.Username is null)
+            {
+                throw new ArgumentException("No user");
+            }
+            
+            var dbUser = await _usercontext.Users.Find(user => user.Username == userrequest.Username && user.Email == userrequest.Email).FirstOrDefaultAsync();
+            if (dbUser is null)
+            {
+                //throw new NotFoundItemException("User not found");
+            }
+       
+       }
 
     }
     

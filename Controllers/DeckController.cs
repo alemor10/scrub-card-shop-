@@ -11,34 +11,7 @@ namespace scrubcardshopAPI.Controllers
 
     public class DeckController: ControllerBase
     {
-        private readonly CardService _cardservice;
-        private readonly UserService _userservice;
-
-        public DeckController (CardService cardService, UserService userService)
-        {
-            _cardservice = cardService;
-            _userservice = userService;
-        }
-
-        //returns entire list of cards
-        [HttpGet]
-        public ActionResult <List<Card>> Get()
-        {
-            var cardlist = _cardservice.Get();
-            return Ok(cardlist);
-
-        }
-
-        [HttpPut("{userid:length(24)}")]
-        public IActionResult Update(string userid, User userIn)
-        {
-            User user = _userservice.Get(userid);
-            return NoContent();
-        }
-
-
-
-
+    
 
         
     }

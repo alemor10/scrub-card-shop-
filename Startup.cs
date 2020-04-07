@@ -14,7 +14,13 @@ using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using AutoMapper;
+
 using scrubcardshopAPI.Services;
+using scrubcardshopAPI.DataAccess.UserData;
+using scrubcardshopAPI.Services.UserServices;
+using scrubcardshopAPI.Services.UserRepository;
+
 
 namespace scrubcardshopAPI
 {
@@ -31,14 +37,6 @@ namespace scrubcardshopAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-            
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            
-            });
 
             //add authentication services
             services.AddAuthentication(options => {
@@ -96,11 +94,20 @@ namespace scrubcardshopAPI
                     }
                 };
             });
-            services.AddControllersWithViews();
-            services.AddScoped<UserService>();
-            services.AddScoped<CardService>();
+            services.AddControllers();
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new UserMapping());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserContext, UserContext>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            //services.AddScoped<CardService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

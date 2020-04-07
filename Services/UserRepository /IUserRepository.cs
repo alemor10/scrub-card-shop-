@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using scrubcardshopAPI.Models;
 
 
+
 namespace scrubcardshopAPI.Services.UserRepository
 {
     public interface IUserRepository 

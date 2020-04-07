@@ -99,3 +99,4 @@ C:/Users/alexx/Documents/GitHub/scrub-card-shop-/obj/Debug/netcoreapp3.1/scrubca
 /Users/ale/Documents/new Github/scrub-card-shop-/obj/Debug/netcoreapp3.1/scrubcardshopAPI.dll
 /Users/ale/Documents/new Github/scrub-card-shop-/obj/Debug/netcoreapp3.1/scrubcardshopAPI.pdb
 /Users/ale/Documents/new Github/scrub-card-shop-/bin/Debug/netcoreapp3.1/Data/yugiohtest.json
+/Users/ale/Documents/new Github/scrub-card-shop-/bin/Debug/netcoreapp3.1/AutoMapper.dll

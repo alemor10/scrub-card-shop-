@@ -1,3 +1,5 @@
+
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using scrubcardshopAPI.Models;
 using scrubcardshopAPI.Services;
@@ -11,64 +13,59 @@ namespace scrubcardshopAPI.Controllers
     {
         private readonly IUserService _service;
 
-        public UserController (UserService userService)
+        public UserController (IUserService userService)
         {
             _service = userService;
         }
 
         [HttpGet]
-        public ActionResult<List<User>> Get()
+        public async Task <IActionResult> Get()
         {
-            var userlist = await _service.Get();
+            var userlist = await _service.GetUsers();
             return Ok(userlist);
 
         }
 
         [HttpGet("{id:length(24)}", Name="GetUser")]
-        public ActionResult<User> Get(string id)
+        public async Task<IActionResult> GetUser(string id)
         {
-            var user =  _userservice.Get(id);
+            var user =  await _service.GetUser(id);
             
             if(user == null)
             {
                 return NotFound();
             }
-            return user;
+            return Ok(user);
         }
 
         [HttpPost]
-        public ActionResult<User> Create(User user)
+        public async Task <IActionResult> Create(CreateUserRequest user)
         {
-            _userservice.Create(user);
-            return CreatedAtRoute("GetUser",new {id =user.Id.ToString()} ,user);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var User = await _service.CreateUser(user);
+            var location = string.Format("/api/users/{0}",User.Id);
+            return Created(location,User);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, User userIn)
+        public async Task <IActionResult>  Update(string id, CreateUserRequest updateRequest)
         {
-            var user = _userservice.Get(id);
-
-            if (user == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return BadRequest(ModelState);
             }
-            _userservice.Update(id,userIn);
+            await  _service.UpdateUser(id,updateRequest);
 
             return NoContent();
         }
         
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
+        public async Task <IActionResult> Delete(string id)
         {
-            var user = _userservice.Get(id);
-            
-            if (user == null)
-            {
-                return NotFound();
-            }
-            
-            _userservice.Delete(user.Id);
-
+            await _service.RemoveUser(id);
             return NoContent();
      
         }       
