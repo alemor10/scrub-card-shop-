@@ -11,7 +11,6 @@ using MongoDB.Driver;
 
 
 using scrubcardshopAPI.Models;
-using scrubcardshopAPI.Models.CardModel;
 using scrubcardshopAPI.DataAccess;
 using scrubcardshopAPI.DataAccess.UserData;
 using scrubcardshopAPI.DataAccess.CardsData;

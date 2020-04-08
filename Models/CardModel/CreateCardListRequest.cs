@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace scrubcardshopAPI.Models.CardModel
+namespace scrubcardshopAPI.Models
 {
     public class createCardListRequest
     {

@@ -1,5 +1,4 @@
 using scrubcardshopAPI.Models;
-using scrubcardshopAPI.Models.CardModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

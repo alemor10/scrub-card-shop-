@@ -1,10 +1,9 @@
-using scrubcardshopAPI.DataAccess.CardsData;
-using scrubcardshopAPI.Models.CardModel;
-using scrubcardshopAPI.Models;
+
 using AutoMapper;
 using System;
 
-
+using scrubcardshopAPI.DataAccess.CardsData;
+using scrubcardshopAPI.Models;
 namespace scrubcardshopAPI.Services.CardServices
 {
     public class CardMapping : Profile

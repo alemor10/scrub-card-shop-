@@ -30,7 +30,7 @@ namespace scrubcardshopAPI.Services.UserRepository
                 users.Add(_mapper.Map<User>(user));
             }
 
-                return users;
+            return users;
         }
         public async Task<User> GetUser(string id)
         {
@@ -87,10 +87,7 @@ namespace scrubcardshopAPI.Services.UserRepository
             var dbUser = dbUsers[0];
 
             await _context.Users.DeleteOneAsync(new BsonDocument("_id", new ObjectId(id)));
-        }
-
-
-            
+        }  
 
     }
 }
