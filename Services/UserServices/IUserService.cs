@@ -12,7 +12,5 @@ namespace scrubcardshopAPI.Services
         Task<User> CreateUser(CreateUserRequest user);
         Task<User> UpdateUser(string id, CreateUserRequest user);
         Task RemoveUser (string id);
-
-        
     }
 }
